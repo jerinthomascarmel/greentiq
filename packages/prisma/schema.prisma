@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output ="./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Activity {
+  activityId String @id @default(cuid())
+  date       String
+  description String
+}
+
+model Sale {
+  saleId String @id @default(cuid())
+  status SaleStatus @default(Open)
+  saleDate String
+  amount Float
+  stage String
+  nextActivity String
+  saleName String
+}
+
+enum SaleStatus {
+  Open
+  Lost
+  Sold
+  Stalled
+}
