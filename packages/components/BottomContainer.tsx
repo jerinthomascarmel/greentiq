@@ -126,7 +126,7 @@ const SalesPanel = () => {
             setSelectedSales([...selectedSales, sale]);
         }
     }
-    console.log(selectedSales)
+    // console.log(selectedSales)
 
 
 
