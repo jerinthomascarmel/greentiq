@@ -101,7 +101,7 @@ export default CompanyCard;
 
 const  CompanyPanel = () =>{
     return (
-        <div className='grid grid-cols-2 gap-2 text-sm'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 text-sm'>
                 <div className='flex flex-col gap-2'>
                     <div className='grid grid-cols-4'>
                         <div className='text-gray-500'>Postal:</div>

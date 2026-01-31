@@ -109,7 +109,7 @@ const SalesPanel = () => {
 
     let sales: Sale[] = data?.data || [];
 
-    let totalPage: GetSalesResponse["metadata"]["total"] = Math.round(data?.metadata.total / 4) + 1 || 0;
+    let totalPage: GetSalesResponse["metadata"]["total"] = Math.floor(data?.metadata.total / 4) + 1 || 0;
 
     let handleSelectSale = (sale: Sale) => {
         let isIncluded = false;
@@ -128,10 +128,12 @@ const SalesPanel = () => {
     }
     console.log(selectedSales)
 
+
+
     let tableData: TableLayoutProps['tableData'] = sales.map(sale => {
         return {
             saleId: sale.saleId,
-            status: sale.status,
+            status: saleStatusDiv[sale.status],
             saleDate: sale.saleDate,
             amount: sale.amount,
             stage: sale.stage,
@@ -346,6 +348,25 @@ const DemoTable = () => {
         </table>
     );
 
+}
+
+let saleStatusDiv = {
+    "Open": <div className="flex items-center gap-1">
+        <div className="w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center text-[10px] text-gray-500 font-serif font-bold">€</div>
+        <span className="text-xs font-semibold">Open</span>
+    </div>,
+    "Lost": <div className="flex items-center gap-1 bg-red-100 px-1.5 py-0.5 rounded w-fit">
+        <span className="text-red-500 text-[10px]">✕</span>
+        <span className="text-xs font-medium text-red-700">Lost</span>
+    </div>,
+    "Sold": <div className="flex items-center gap-1 bg-emerald-100 px-1.5 py-0.5 rounded w-fit">
+        <span className="text-emerald-500 text-[10px]">✓</span>
+        <span className="text-xs font-medium text-emerald-700">Sold</span>
+    </div>,
+    "Stalled": <div className="flex items-center gap-1 bg-orange-100 px-1.5 py-0.5 rounded w-fit">
+        <span className="text-orange-500 text-[10px]">▽</span>
+        <span className="text-xs font-medium text-orange-700">Stalled</span>
+    </div>,
 }
 
 
